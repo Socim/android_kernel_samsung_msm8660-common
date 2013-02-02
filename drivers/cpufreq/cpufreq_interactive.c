@@ -287,7 +287,6 @@ static void cpufreq_interactive_timer(unsigned long data)
 	unsigned int loadadjfreq;
 	unsigned int index;
 	unsigned long flags;
-	u64 now = ktime_to_us(ktime_get());
 
 	if (!down_read_trylock(&pcpu->enable_sem))
 		return;
