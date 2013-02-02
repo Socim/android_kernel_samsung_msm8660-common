@@ -1815,9 +1815,9 @@ static inline void hci_remote_version_evt(struct hci_dev *hdev, struct sk_buff *
 	conn = hci_conn_hash_lookup_handle(hdev, __le16_to_cpu(ev->handle));
 	if (!conn)
 		goto unlock;
-	if (!ev->status)
-		mgmt_remote_version(hdev->id, &conn->dst, ev->lmp_ver,
-				ev->manufacturer, ev->lmp_subver);
+	//if (!ev->status)
+		//mgmt_remote_version(hdev->id, &conn->dst, ev->lmp_ver,
+				//ev->manufacturer, ev->lmp_subver);
 unlock:
 	hci_dev_unlock(hdev);
 }
@@ -2481,11 +2481,11 @@ static inline void hci_remote_ext_features_evt(struct hci_dev *hdev, struct sk_b
 		conn->ssp_mode = (ev->features[0] & 0x01);
 		/*In case if remote device ssp supported/2.0 device
 		reduce the security level to MEDIUM if it is HIGH*/
-		if (!conn->ssp_mode && conn->auth_initiator &&
+		if (!conn->ssp_mode &&
 			(conn->pending_sec_level == BT_SECURITY_HIGH))
 			conn->pending_sec_level = BT_SECURITY_MEDIUM;
 
-		if (conn->ssp_mode && conn->auth_initiator &&
+		if (conn->ssp_mode &&
 			conn->io_capability != 0x03) {
 			conn->pending_sec_level = BT_SECURITY_HIGH;
 			conn->auth_type = HCI_AT_DEDICATED_BONDING_MITM;
