@@ -2588,8 +2588,8 @@ static int mdp_probe(struct platform_device *pdev)
 			  mdp_vsync_resync_workqueue_handler);
 		mfd->hw_refresh = FALSE;
 
-		if(mfd->panel.type == MDDI_PANEL)
-			mdp4_mddi_rdptr_init(0);
+		//if(mfd->panel.type == MDDI_PANEL)
+		//	mdp4_mddi_rdptr_init(0);
 
 		if (mfd->panel.type == EXT_MDDI_PANEL) {
 			/* 15 fps -> 66 msec */
